@@ -23,21 +23,24 @@ import frc.robot.sds.SdsModuleConfigurations;
  */
 public final class Constants {
 
-  public static final ModuleConfiguration kModuleType = SdsModuleConfigurations.MK4I_L1;
+  public static final ModuleConfiguration ModuleType = SdsModuleConfigurations.MK4I_L1;
 
   public static final class DriveConstants {
+
+    //TODO: DEFINE maxSpeed
+    public static final double MaxSpeed = 1;
     // Distance between left and right wheels
-    public static final double kTrackWidthMeters = 0.2921;
+    public static final double TrackWidthMeters = 0.2921;
     // Distance between front and back wheels
-    public static final double kTrackBaseMeters = 0.2921;
+    public static final double TrackBaseMeters = 0.2921;
 
-    private static final Translation2d m_frontLeftLocation = new Translation2d(kTrackBaseMeters, kTrackWidthMeters);
-    private static final Translation2d m_frontRightLocation = new Translation2d(kTrackBaseMeters, -kTrackWidthMeters);
-    private static final Translation2d m_backLeftLocation = new Translation2d(-kTrackBaseMeters, kTrackWidthMeters);
-    private static final Translation2d m_backRightLocation = new Translation2d(-kTrackBaseMeters, -kTrackWidthMeters);
+    private static final Translation2d frontLeftLocation = new Translation2d(TrackBaseMeters, TrackWidthMeters);
+    private static final Translation2d frontRightLocation = new Translation2d(TrackBaseMeters, -TrackWidthMeters);
+    private static final Translation2d backLeftLocation = new Translation2d(-TrackBaseMeters, TrackWidthMeters);
+    private static final Translation2d backRightLocation = new Translation2d(-TrackBaseMeters, -TrackWidthMeters);
 
-    public static final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
-        m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation, m_backRightLocation);
+    public static final SwerveDriveKinematics kinematics = new SwerveDriveKinematics(
+            frontLeftLocation, frontRightLocation, backLeftLocation, backRightLocation);
 
     // FIXME Measure the drivetrain's maximum velocity or calculate the theoretical.
     // The formula for calculating the theoretical maximum velocity is:
@@ -54,21 +57,21 @@ public final class Constants {
      * This is a measure of how fast the robot should be able to drive in a straight
      * line.
      */
-    public static final double kNeoFreeSpinRpm = 5676;
-    public static final double kMaxVelocityMetersPerSecond = (kNeoFreeSpinRpm / 60.0) *
-        kModuleType.getDriveReduction() *
-        kModuleType.getWheelDiameter() * Math.PI;
+    public static final double NeoFreeSpinRpm = 5676;
+    public static final double MaxVelocityMetersPerSecond = (NeoFreeSpinRpm / 60.0) *
+        ModuleType.getDriveReduction() *
+        ModuleType.getWheelDiameter() * Math.PI;
 
-    public static final double kMaxAngularVelocityRadiansPerSecond = kMaxVelocityMetersPerSecond
-        / Math.hypot(kTrackWidthMeters / 2, kTrackBaseMeters / 2);
+    public static final double MaxAngularVelocityRadiansPerSecond = MaxVelocityMetersPerSecond
+        / Math.hypot(TrackWidthMeters / 2, TrackBaseMeters / 2);
 
   }
 
   public static final class ModuleConstants {
 
-    public static final double kMaxModuleAngularSpeedRadiansPerSecond = 2 *
+    public static final double MaxModuleAngularSpeedRadiansPerSecond = 2 *
         Math.PI;
-    public static final double kMaxModuleAngularAccelerationRadiansPerSecondSquared = 2 * Math.PI;
+    public static final double MaxModuleAngularAccelerationRadiansPerSecondSquared = 2 * Math.PI;
 
     // public static final int kEncoderCPR = 1024;
     // public static final double kWheelDiameterMeters = 0.15;
@@ -79,8 +82,8 @@ public final class Constants {
     // public static final double kTurningEncoderDistancePerPulse =
     // // Assumes the encoders are on a 1:1 reduction with the module shaft.
     // (2 * Math.PI) / (double) kEncoderCPR;
-    public static final double kTurningEncoderDegreesPerPulse = Math
-        .toDegrees(2. * Math.PI * kModuleType.getSteerReduction());
+    public static final double TurningEncoderDegreesPerPulse = Math
+        .toDegrees(2. * Math.PI * ModuleType.getSteerReduction());
 
     // public static final double kPModuleTurningController = 1;
 
@@ -88,6 +91,6 @@ public final class Constants {
   }
 
   public static final class OIConstants {
-    public static final int kDriverControllerPort = 0;
+    public static final int DriverControllerPort = 0;
   }
 }
